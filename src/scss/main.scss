@@ -1,0 +1,211 @@
+$niceBlue: #0d1e2b;
+$light: #e2f3f5;
+$background: #122533;
+$darkerBlue: rgb(12, 22, 29);
+$orange: #f85959;
+
+body {
+  margin: 0;
+  background: $background;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 20px;
+  color: $light;
+}
+
+h1,
+h2,
+h3,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+.active {
+  color: $orange;
+  border-bottom: 2px solid $orange;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.space {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container {
+  width: 85%;
+  margin: auto;
+}
+
+nav {
+  padding: 10px 0px;
+  box-shadow: 0 4px 2px -2px $darkerBlue;
+
+  img {
+    width: 200px;
+  }
+
+  li {
+    display: inline-block;
+    padding: 0px 10px;
+  }
+}
+
+.subNav {
+  padding: 20px 0px;
+  margin: auto;
+  li {
+    display: inline-block;
+    padding: 0px 10px;
+    cursor: pointer;
+  }
+  ul {
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+  }
+}
+
+form {
+  padding: 15px 0px;
+  padding-top: 0px;
+  input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 5px;
+    border: 0px;
+    box-sizing: border-box;
+    background: $niceBlue;
+    color: #fff;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 20px;
+}
+
+.card {
+  width: 100%;
+  line-height: 0;
+  padding: 5px;
+  background: $niceBlue;
+  border-radius: 7px;
+  padding-bottom: 0px;
+  position: relative;
+  cursor: pointer;
+
+  &:hover {
+    h2 {
+      color: $orange;
+      transition: color 0.2s ease-in;
+    }
+
+    .details {
+      li {
+        display: block;
+      }
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 230px;
+    border-radius: 7px;
+  }
+
+  h2 {
+    line-height: 1.5rem;
+    padding: 10px 0px;
+    color: #fff;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  .details {
+    line-height: 1.2rem;
+    position: absolute;
+    width: 96%;
+    height: 96%;
+    box-sizing: border-box;
+    padding: 10px;
+
+    li {
+      opacity: 0;
+      padding: 5px;
+      height: 28px;
+      width: 30px;
+      background: $niceBlue;
+      border-radius: 30px;
+      box-sizing: border-box;
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+      animation: expand 0.2s ease-in;
+      animation-fill-mode: forwards;
+      display: none;
+
+      .text {
+        opacity: 0;
+        animation: fadeIn 0.2s ease-in;
+        animation-fill-mode: forwards;
+        animation-delay: 0.2s;
+      }
+    }
+  }
+}
+
+.card2 {
+  padding: 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+  background: $niceBlue;
+  border-radius: 8px;
+  h4 {
+    margin: 0;
+  }
+
+  .pill {
+    padding: 0px 5px;
+    border-radius: 8px;
+    background: darken($niceBlue, 4);
+  }
+
+  .info {
+    padding-right: 5px;
+  }
+
+  &:hover {
+    i,
+    h4 {
+      color: $orange;
+    }
+  }
+}
+
+@keyframes expand {
+  0% {
+    opacity: 0;
+    width: 30px;
+  }
+  100% {
+    opacity: 1;
+    width: 120px;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
