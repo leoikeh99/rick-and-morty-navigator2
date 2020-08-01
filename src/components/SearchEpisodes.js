@@ -26,7 +26,11 @@ const SearchEpisodes = () => {
       </form>
 
       <div>
-        {!loader && episodes && <Episodes episodes={episodes} />}
+        {!loader && episodes && (
+          <div className="grid-3" style={{ marginBottom: "20px" }}>
+            <Episodes episodes={episodes.results} />
+          </div>
+        )}
         {!loader && error && <div>{error}</div>}
         {loader && <Spinner />}
       </div>

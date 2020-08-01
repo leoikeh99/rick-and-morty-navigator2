@@ -1,15 +1,21 @@
 import React from "react";
 import logo from "./img/logo.png";
+import { Link } from "react-router-dom";
 
 export const NavBar = () => {
   return (
     <nav>
       <div className="container space">
-        <img src={logo} alt="" />
-
+        <Link to="/">
+          <img src={logo} alt="" />
+        </Link>
         <ul>
-          <li>Home</li>
-          <li>About</li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
         </ul>
       </div>
     </nav>

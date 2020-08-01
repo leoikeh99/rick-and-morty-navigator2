@@ -25,11 +25,19 @@ export default (state, action) => {
         loader: true,
       };
 
+    case SET_LOADER2:
+      return {
+        ...state,
+        loader2: true,
+      };
+
     case SET_ERROR:
       return {
         ...state,
         error: action.payload,
         characters: null,
+        episodes: null,
+        locations: null,
         loader: null,
       };
 
@@ -38,6 +46,30 @@ export default (state, action) => {
         ...state,
         characters: action.payload,
         loader: null,
+        error: null,
+      };
+
+    case GET_CHARACTER_EPISODES:
+      return {
+        ...state,
+        characterEpisodes: action.payload,
+        loader2: null,
+        error: null,
+      };
+
+    case GET_EPISODE_CHARACTERS:
+      return {
+        ...state,
+        episodeCharacters: action.payload,
+        loader2: null,
+        error: null,
+      };
+
+    case GET_LOCATION_RESIDENTS:
+      return {
+        ...state,
+        locationResidents: action.payload,
+        loader2: null,
         error: null,
       };
 
@@ -53,6 +85,30 @@ export default (state, action) => {
       return {
         ...state,
         locations: action.payload,
+        loader: null,
+        error: null,
+      };
+
+    case GET_CHARACTER:
+      return {
+        ...state,
+        character: action.payload,
+        loader: null,
+        error: null,
+      };
+
+    case GET_EPISODE:
+      return {
+        ...state,
+        episode: action.payload,
+        loader: null,
+        error: null,
+      };
+
+    case GET_LOCATION:
+      return {
+        ...state,
+        location: action.payload,
         loader: null,
         error: null,
       };
@@ -76,7 +132,7 @@ export default (state, action) => {
     case CLEAR_LOCATIONS:
       return {
         ...state,
-        episodes: null,
+        locations: null,
         loader: null,
         error: null,
       };

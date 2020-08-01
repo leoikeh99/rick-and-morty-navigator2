@@ -32,7 +32,11 @@ const SearchLocations = () => {
       </form>
 
       <div>
-        {!loader && locations && <Locations locations={locations} />}
+        {!loader && locations && (
+          <div className="grid-3" style={{ marginBottom: "20px" }}>
+            <Locations locations={locations.results} />
+          </div>
+        )}
         {!loader && error && <div>{error}</div>}
         {loader && <Spinner />}
       </div>

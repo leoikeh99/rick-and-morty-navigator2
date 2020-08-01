@@ -1,3 +1,4 @@
+@import "mobile";
 $niceBlue: #0d1e2b;
 $light: #e2f3f5;
 $background: #122533;
@@ -25,6 +26,11 @@ p {
   border-bottom: 2px solid $orange;
 }
 
+a {
+  color: $light;
+  text-decoration: none;
+}
+
 ul {
   margin: 0;
   padding: 0;
@@ -44,9 +50,28 @@ li {
   margin: auto;
 }
 
+.center {
+  display: flex;
+  height: 40vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  padding: 8px;
+  background: $niceBlue;
+  border-radius: 5px;
+  box-sizing: border-box;
+
+  &:hover,
+  a:hover {
+    color: $orange;
+  }
+}
+
 nav {
   padding: 10px 0px;
-  box-shadow: 0 4px 2px -2px $darkerBlue;
+  box-shadow: 0 4px 5px -2px $niceBlue;
 
   img {
     width: 200px;
@@ -54,7 +79,12 @@ nav {
 
   li {
     display: inline-block;
-    padding: 0px 10px;
+    padding: 0px 15px;
+
+    &:hover,
+    a:hover {
+      color: $orange;
+    }
   }
 }
 
@@ -93,8 +123,42 @@ form {
   grid-gap: 20px;
 }
 
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+}
+
+.inline {
+  max-width: 300px;
+}
+.inline-2 {
+  max-width: 700px;
+
+  .card2 {
+    margin-bottom: 20px;
+  }
+}
+
+.pill {
+  padding: 0px 5px;
+  border-radius: 8px;
+  background: darken($niceBlue, 4);
+}
+
 .card {
-  width: 100%;
   line-height: 0;
   padding: 5px;
   background: $niceBlue;
@@ -172,12 +236,6 @@ form {
     margin: 0;
   }
 
-  .pill {
-    padding: 0px 5px;
-    border-radius: 8px;
-    background: darken($niceBlue, 4);
-  }
-
   .info {
     padding-right: 5px;
   }
@@ -188,6 +246,52 @@ form {
       color: $orange;
     }
   }
+}
+
+.split {
+  display: flex;
+  justify-content: space-between;
+  height: 75vh;
+  overflow: hidden;
+  margin-top: 30px;
+
+  .split1 {
+    height: 100%;
+    flex-basis: 35%;
+    text-align: center;
+
+    img {
+      height: 250px;
+      width: 250px;
+      border-radius: 125px;
+    }
+  }
+
+  .split2 {
+    flex-basis: 63%;
+    padding: 0px 3px;
+
+    .scroll {
+      height: 92%;
+      overflow-y: scroll;
+      width: 100%;
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: darken($niceBlue, 5);
+  border-radius: 4px;
+}
+
+.cover {
+  background: $niceBlue;
+  border-radius: 8px;
+  padding: 1.4rem;
+  margin-right: 20px;
 }
 
 @keyframes expand {

@@ -32,7 +32,14 @@ const SearchCharacters = () => {
       </form>
 
       <div>
-        {!loader && characters && <Characters characters={characters} />}
+        {!loader && characters && (
+          <div
+            className={characters.results.length == 1 ? "inline" : "grid"}
+            style={{ marginBottom: "20px" }}
+          >
+            <Characters characters={characters.results} />
+          </div>
+        )}
         {!loader && error && <div>{error}</div>}
         {loader && <Spinner />}
       </div>

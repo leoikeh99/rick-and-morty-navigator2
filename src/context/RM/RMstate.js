@@ -30,12 +30,12 @@ const RMstate = (props) => {
     character: null,
     episode: null,
     location: null,
-    CharacterEpisodes: null,
-    EpisodeCharacters: null,
-    LocationResidents: null,
+    characterEpisodes: null,
+    episodeCharacters: null,
+    locationResidents: null,
     error: null,
     loader: null,
-    loader2: true,
+    loader2: null,
   };
 
   const [state, dispatch] = useReducer(rmReducer, initialState);
@@ -86,13 +86,89 @@ const RMstate = (props) => {
     }
   };
 
+  const singleCharacter = async (id) => {
+    setLoader();
+    try {
+      const res = await axios.get(
+        `https://rickandmortyapi.com/api/character/${id}`
+      );
+      dispatch({ type: GET_CHARACTER, payload: res.data });
+      setLoader2();
+      try {
+        const res2 = await axios.all(
+          res.data.episode.map((episode) => axios.get(episode))
+        );
+        var data = [];
+        res2.forEach((episode) => (data = [...data, episode.data]));
+        dispatch({ type: GET_CHARACTER_EPISODES, payload: data });
+      } catch (error) {
+        dispatch({ type: SET_ERROR, payload: "Nothing found" });
+      }
+    } catch (error) {
+      dispatch({ type: SET_ERROR, payload: "Nothing found" });
+    }
+  };
+
+  const singleEpisode = async (id) => {
+    setLoader();
+    try {
+      const res = await axios.get(
+        `https://rickandmortyapi.com/api/episode/${id}`
+      );
+      dispatch({ type: GET_EPISODE, payload: res.data });
+      setLoader2();
+      try {
+        const res2 = await axios.all(
+          res.data.characters.map((character) => axios.get(character))
+        );
+        var data = [];
+        res2.forEach((character) => (data = [...data, character.data]));
+        dispatch({ type: GET_EPISODE_CHARACTERS, payload: data });
+      } catch (error) {
+        dispatch({ type: SET_ERROR, payload: "Nothing found" });
+      }
+    } catch (error) {
+      dispatch({ type: SET_ERROR, payload: "Nothing found" });
+    }
+  };
+
+  const singleLocation = async (id) => {
+    setLoader();
+    try {
+      const res = await axios.get(
+        `https://rickandmortyapi.com/api/location/${id}`
+      );
+      dispatch({ type: GET_LOCATION, payload: res.data });
+      setLoader2();
+      try {
+        const res2 = await axios.all(
+          res.data.residents.map((resident) => axios.get(resident))
+        );
+        var data = [];
+        res2.forEach((resident) => (data = [...data, resident.data]));
+        dispatch({ type: GET_LOCATION_RESIDENTS, payload: data });
+      } catch (error) {
+        dispatch({ type: SET_ERROR, payload: "Nothing found" });
+      }
+    } catch (error) {
+      dispatch({ type: SET_ERROR, payload: "Nothing found" });
+    }
+  };
+
   return (
     <rmContext.Provider
       value={{
         characters: state.characters,
         episodes: state.episodes,
         locations: state.locations,
+        character: state.character,
+        episode: state.episode,
+        location: state.location,
+        characterEpisodes: state.characterEpisodes,
+        episodeCharacters: state.episodeCharacters,
+        locationResidents: state.locationResidents,
         loader: state.loader,
+        loader2: state.loader2,
         error: state.error,
         searchCharacters,
         clearCharacters,
@@ -101,6 +177,9 @@ const RMstate = (props) => {
         searchLocations,
         clearLocations,
         clearError,
+        singleCharacter,
+        singleEpisode,
+        singleLocation,
       }}
     >
       {props.children}
