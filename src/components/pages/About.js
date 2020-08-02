@@ -34,7 +34,7 @@ const About = () => {
             style={{ marginTop: "10px", display: "inline-block" }}
           >
             <a
-              href="https://github.com/leoikeh99/Rick-and-Morty-React.js-App"
+              href="https://github.com/leoikeh99/rick-and-morty-navigator2"
               target="_blank"
             >
               <i className="fab fa-github"></i> VIEW CODE IN GITHUB
